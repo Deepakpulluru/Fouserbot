@@ -142,10 +142,10 @@ class FouserBot:
             
             # Step 2: Get the *currently active* plan (where end_date is NULL)
             plan_response = self.supabase.table('plan_history').select('plan_text') \
-                .eq('user_id', user_id) \
-                .is_('end_date', None) \
-                .order('start_date', 'desc') \
-                .limit(1).execute()
+            .eq('user_id', user_id) \
+            .is_('end_date', None) \
+            .order('start_date', desc=True) \
+            .limit(1).execute()
             
             last_plan = "No previous plan found."
             if plan_response.data:
